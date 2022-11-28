@@ -19,6 +19,77 @@ public class Star {
         wd.get("file:///Users/tayahatum/Downloads/apk/index.html");
 
     }
+    @Test
+    public void tableTests(){
+        // print amount of table rows
+
+
+        List<WebElement> rows = wd.findElements(By.cssSelector("tr"));
+        System.out.println("Count of Rows -->" +rows.size());
+        // print amount of table cols
+        List<WebElement> columns = wd.findElements(By.cssSelector("th"));
+        System.out.println("Count of Columns -->" +columns.size());
+        // print content of row3
+        List<WebElement> row3 = wd.findElements(By.cssSelector("tr:nth-child(3) td"));
+        for (WebElement el:row3) {
+            System.out.println(el.getText());
+        }
+        System.out.println("**********");
+        WebElement r3 = wd.findElement(By.cssSelector("tr:nth-child(3)"));
+        r3.findElements(By.cssSelector("td"));
+        System.out.println(r3.getText());
+        System.out.println("**********");
+        System.out.println(wd.findElement(By.cssSelector("table")).getText());
+        // print content of last col
+        List<WebElement> lastColumns = wd.findElements(By.cssSelector("td:last-child"));
+        for (WebElement el:lastColumns) {
+            System.out.println(el.getText());
+        }
+        // Assert with name "Canada"
+        WebElement canada = wd.findElement(By.cssSelector("tr:nth-child(3) td:last-child"));
+        String text =canada.getText();
+        Assert.assertEquals(text,"Canada");
+
+    }
+
+    @Test
+    public void tableTestsCsstoxpath(){
+        // print amount of table rows
+
+       // List<WebElement> rows = wd.findElements(By.cssSelector("tr"));
+        List<WebElement> rows = wd.findElements(By.xpath("//tr"));
+        System.out.println("Count of Rows -->" +rows.size());
+        // print amount of table cols
+        //List<WebElement> columns = wd.findElements(By.cssSelector("th"));
+        List<WebElement> columns = wd.findElements(By.xpath("//th"));
+        System.out.println("Count of Columns -->" +columns.size());
+        // print content of row3
+        //List<WebElement> row3 = wd.findElements(By.cssSelector("tr:nth-child(3) td"));
+        List<WebElement> row3 = wd.findElements(By.xpath("//tr[3]//td"));
+        //List<WebElement> row3 = wd.findElements(By.cssSelector("tr:nth-child(3)>td"));
+        List<WebElement> row3_1 = wd.findElements(By.xpath("//tr[3]/td"));
+        for (WebElement el:row3) {
+            System.out.println(el.getText());
+        }
+        System.out.println("**********");
+        //WebElement r3 = wd.findElement(By.cssSelector("tr:nth-child(3)"));
+        WebElement r3 = wd.findElement(By.xpath("//tr[3]"));
+        System.out.println(r3.getText());
+        System.out.println("**********");
+        System.out.println(wd.findElement(By.cssSelector("table")).getText());
+        // print content of last col
+       // List<WebElement> lastColumns = wd.findElements(By.cssSelector("td:last-child"));
+        List<WebElement> lastColumns = wd.findElements(By.xpath("//td[last()]"));
+        for (WebElement el:lastColumns) {
+            System.out.println(el.getText());
+        }
+        // Assert with name "Canada"
+       // WebElement canada = wd.findElement(By.cssSelector("tr:nth-child(3) td:last-child"));
+        WebElement canada = wd.findElement(By.xpath("//tr[3]//td[last()]"));
+        String text =canada.getText();
+        Assert.assertEquals(text,"Canada");
+
+    }
 
     @Test
     public void testIndexFile(){
